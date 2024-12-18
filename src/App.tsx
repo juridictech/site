@@ -10,10 +10,12 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
-      <Services />
-      <Testimonials />
-      <ContactForm />
+      <main>
+        <Hero />
+        <Services />
+        <Testimonials />
+        <ContactForm />
+      </main>
       <Footer />
     </div>
   );

@@ -1,4 +1,8 @@
 import React from 'react';
+import Container from '../ui/Container';
+import Section from '../ui/Section';
+import SectionHeading from '../ui/SectionHeading';
+import TestimonialCard from './TestimonialCard';
 
 const testimonials = [
   {
@@ -23,40 +27,20 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div id="testimonials" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            O que dizem nossos clientes
-          </h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Histórias de sucesso de quem já transformou sua prática jurídica
-          </p>
-        </div>
+    <Section id="testimonials">
+      <Container>
+        <SectionHeading
+          title="O que dizem nossos clientes"
+          subtitle="Histórias de sucesso de quem já transformou sua prática jurídica"
+        />
 
         <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.author}
-              className="bg-gray-50 p-8 rounded-2xl"
-            >
-              <p className="text-gray-600 italic">"{testimonial.content}"</p>
-              <div className="mt-6 flex items-center">
-                <img
-                  className="h-12 w-12 rounded-full"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                />
-                <div className="ml-4">
-                  <p className="text-base font-semibold text-gray-900">{testimonial.author}</p>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                </div>
-              </div>
-            </div>
+            <TestimonialCard key={testimonial.author} {...testimonial} />
           ))}
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
 

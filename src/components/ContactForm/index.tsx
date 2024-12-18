@@ -1,5 +1,9 @@
 import React from 'react';
 import { Send } from 'lucide-react';
+import Container from '../ui/Container';
+import Section from '../ui/Section';
+import SectionHeading from '../ui/SectionHeading';
+import Button from '../ui/Button';
 
 const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -8,16 +12,12 @@ const ContactForm = () => {
   };
 
   return (
-    <div id="contact" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Entre em Contato
-          </h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Estamos prontos para ajudar você a transformar sua prática jurídica
-          </p>
-        </div>
+    <Section id="contact" background="gray">
+      <Container>
+        <SectionHeading
+          title="Entre em Contato"
+          subtitle="Estamos prontos para ajudar você a transformar sua prática jurídica"
+        />
 
         <div className="mt-16 max-w-xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -58,18 +58,14 @@ const ContactForm = () => {
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500"
-              >
+              <Button type="submit" icon={Send}>
                 Enviar Mensagem
-                <Send className="ml-2 h-5 w-5" />
-              </button>
+              </Button>
             </div>
           </form>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
 

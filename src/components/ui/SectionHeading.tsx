@@ -3,13 +3,17 @@ import React from 'react';
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
-  className?: string;
+  centered?: boolean;
 }
 
-export default function SectionHeading({ title, subtitle, className = '' }: SectionHeadingProps) {
+const SectionHeading: React.FC<SectionHeadingProps> = ({
+  title,
+  subtitle,
+  centered = true
+}) => {
   return (
-    <div className={`text-center ${className}`}>
-      <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+    <div className={`${centered ? 'text-center' : ''} max-w-2xl ${centered ? 'mx-auto' : ''}`}>
+      <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
         {title}
       </h2>
       {subtitle && (
@@ -19,4 +23,6 @@ export default function SectionHeading({ title, subtitle, className = '' }: Sect
       )}
     </div>
   );
-}
+};
+
+export default SectionHeading;

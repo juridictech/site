@@ -1,35 +1,36 @@
 import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
-  className?: string;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary';
+  icon?: LucideIcon;
+  iconPosition?: 'left' | 'right';
 }
 
-export default function Button({
+const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',
+  icon: Icon,
+  iconPosition = 'right',
   className = '',
-  onClick,
-  type = 'button',
-}: ButtonProps) {
-  const baseStyles = 'px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+  ...props
+}) => {
+  const baseStyles = "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md transition-colors";
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+    primary: "text-white bg-black hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:ring-lime-500",
+    secondary: "text-black bg-lime-400 hover:bg-lime-500"
   };
 
   return (
     <button
-      type={type}
       className={`${baseStyles} ${variants[variant]} ${className}`}
-      onClick={onClick}
+      {...props}
     >
+      {Icon && iconPosition === 'left' && <Icon className="mr-2 h-5 w-5" />}
       {children}
+      {Icon && iconPosition === 'right' && <Icon className="ml-2 h-5 w-5" />}
     </button>
   );
-}
+};
+
+export default Button;
